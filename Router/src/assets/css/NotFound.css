@@ -1,0 +1,357 @@
+* {
+  box-sizing: border-box;
+}
+
+.not-found-page {
+  background: #f6f5ff;
+  padding: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #252733;
+}
+
+.not-found-container {
+  max-width: 1300px;
+  min-height: calc(100vh - 130px);
+  margin: auto;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 50px rgba(70, 60, 120, 0.12);
+}
+
+/* Header */
+
+.not-found-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 55px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.logo span span {
+  color: #6857e8;
+}
+
+.logo-icon {
+  color: #6857e8;
+  font-size: 28px;
+}
+
+.home-link {
+  color: #6857e8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Main */
+
+.not-found-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  padding: 50px 80px 70px;
+}
+
+.not-found-text {
+  width: 50%;
+}
+
+.error-number {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: clamp(100px, 12vw, 180px);
+  line-height: 0.9;
+  font-weight: 800;
+  color: #242833;
+}
+
+.error-number .zero {
+  color: #6857e8;
+}
+
+.not-found-text h1 {
+  margin: 30px 0 15px;
+  font-size: 38px;
+}
+
+.not-found-text h1:first-letter {
+  color: #6857e8;
+}
+
+.not-found-text h1 span {
+  color: #252733;
+}
+
+.not-found-text p {
+  max-width: 550px;
+  margin-bottom: 30px;
+  color: #687083;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.home-btn {
+  display: inline-block;
+  padding: 15px 28px;
+  border-radius: 12px;
+  background: #6857e8;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+  box-shadow: 0 10px 25px rgba(104, 87, 232, 0.25);
+}
+
+.home-btn:hover {
+  background: #5141cf;
+  transform: translateY(-2px);
+}
+
+.explore-text {
+  margin-top: 20px;
+  color: #687083;
+}
+
+.explore-text a {
+  color: #6857e8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Illustration */
+
+.not-found-illustration {
+  position: relative;
+  width: 48%;
+  min-height: 450px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #f0edff 0%,
+    #f8f7ff 55%,
+    transparent 70%
+  );
+}
+
+.question-mark {
+  position: absolute;
+  top: 25px;
+  left: 35%;
+  width: 90px;
+  height: 90px;
+  border: 2px solid #5544c9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 55px;
+  font-weight: 700;
+  color: #6857e8;
+  background: white;
+}
+
+/* Planet */
+
+.planet {
+  position: absolute;
+  bottom: 20px;
+  left: 15%;
+  width: 70%;
+  height: 150px;
+  border-radius: 50%;
+  background: linear-gradient(
+    180deg,
+    #9b8cf5,
+    #6552d8
+  );
+  transform: rotate(-5deg);
+}
+
+.crater {
+  position: absolute;
+  border-radius: 50%;
+  background: #7162dc;
+  border: 2px solid #5747c4;
+}
+
+.crater-1 {
+  width: 45px;
+  height: 20px;
+  left: 20%;
+  top: 45%;
+}
+
+.crater-2 {
+  width: 60px;
+  height: 25px;
+  right: 20%;
+  top: 25%;
+}
+
+.crater-3 {
+  width: 30px;
+  height: 15px;
+  right: 35%;
+  bottom: 15%;
+}
+
+/* Astronaut */
+
+.astronaut {
+  position: absolute;
+  bottom: 85px;
+  left: 33%;
+  font-size: 120px;
+  z-index: 2;
+}
+
+/* Sign */
+
+.sign-board {
+  position: absolute;
+  right: 5%;
+  bottom: 120px;
+  z-index: 3;
+  transform: rotate(4deg);
+}
+
+.sign-board div {
+  background: #d89b55;
+  color: #3d2b1b;
+  padding: 10px 25px;
+  margin: 8px 0;
+  min-width: 170px;
+  text-align: center;
+  font-weight: 700;
+  border-radius: 3px;
+  box-shadow: 3px 4px 0 #9c6835;
+}
+
+/* Bottom Features */
+
+.not-found-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 35px 70px;
+  background: #fafaff;
+  border-top: 1px solid #eeeeff;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.feature-icon {
+  min-width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eeeaff;
+  font-size: 24px;
+}
+
+.feature h3 {
+  margin: 0 0 5px;
+  font-size: 18px;
+}
+
+.feature p {
+  margin: 0;
+  color: #73798a;
+  line-height: 1.5;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .not-found-content {
+    flex-direction: column;
+    padding: 40px 30px;
+    text-align: center;
+  }
+
+  .not-found-text {
+    width: 100%;
+  }
+
+  .not-found-text p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .error-number {
+    justify-content: center;
+  }
+
+  .not-found-illustration {
+    width: 100%;
+  }
+
+  .not-found-features {
+    grid-template-columns: 1fr;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .not-found-page {
+    padding: 10px;
+  }
+
+  .not-found-container {
+    min-height: calc(100vh - 20px);
+  }
+
+  .not-found-header {
+    padding: 20px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .home-link {
+    font-size: 14px;
+  }
+
+  .error-number {
+    font-size: 90px;
+  }
+
+  .not-found-text h1 {
+    font-size: 28px;
+  }
+
+  .not-found-illustration {
+    min-height: 350px;
+  }
+
+  .astronaut {
+    font-size: 80px;
+    left: 25%;
+  }
+
+  .sign-board {
+    right: 0;
+  }
+
+  .sign-board div {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
