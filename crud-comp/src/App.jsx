@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+import UserForm from "./components/UserForm";
+import UserList from "./components/UserList";
+
 const App = () => {
+
+  // =========================
+  // STATE
+  // =========================
 
   const [users, setUsers] = useState([]);
 
@@ -17,6 +24,7 @@ const App = () => {
   // =========================
   // READ
   // =========================
+
   const getUsers = async () => {
 
     const response = await axios.get(
@@ -35,6 +43,7 @@ const App = () => {
   // =========================
   // INPUT CHANGE
   // =========================
+
   const handleChange = (e) => {
 
     setFormData({
@@ -48,14 +57,13 @@ const App = () => {
   // =========================
   // CREATE / UPDATE
   // =========================
+
   const handleSubmit = async (e) => {
 
     e.preventDefault();
 
 
-    // =========================
     // CREATE
-    // =========================
     if (editId === null) {
 
       const response = await axios.post(
@@ -67,11 +75,6 @@ const App = () => {
         }
       );
 
-      console.log("Added User:", response.data);
-
-
-      // DummyJSON fake ID deta hai,
-      // isliye React me apni unique ID bana rahe hain
 
       const newUser = {
         ...response.data,
@@ -87,25 +90,15 @@ const App = () => {
     }
 
 
-    // =========================
     // UPDATE
-    // =========================
     else {
 
-      // Check karo user API ka hai
-      // ya form se add hua hai
-
-      const selectedUser = users.find(
-        (user) => user.id === editId
-      );
-
-
-      // Agar API ka original user hai
+      // API user
       if (editId <= 30) {
 
         try {
 
-          const response = await axios.put(
+          await axios.put(
             `https://dummyjson.com/users/${editId}`,
             {
               firstName: formData.firstName,
@@ -114,18 +107,16 @@ const App = () => {
             }
           );
 
-          console.log("Updated API User:", response.data);
-
         } catch (error) {
 
           console.log("API update error:", error);
 
         }
-
       }
 
 
-      // React state me update
+      // React state update
+
       setUsers((prevUsers) =>
         prevUsers.map((user) =>
           user.id === editId
@@ -140,13 +131,12 @@ const App = () => {
       );
 
 
-      console.log("User Updated:", selectedUser);
-
       setEditId(null);
     }
 
 
-    // Form clear
+    // Clear form
+
     setFormData({
       firstName: "",
       lastName: "",
@@ -159,6 +149,7 @@ const App = () => {
   // =========================
   // EDIT
   // =========================
+
   const handleEdit = (user) => {
 
     setEditId(user.id);
@@ -175,9 +166,9 @@ const App = () => {
   // =========================
   // DELETE
   // =========================
+
   const handleDelete = async (id) => {
 
-    // API user hai to API DELETE call karo
     if (id <= 30) {
 
       try {
@@ -185,8 +176,6 @@ const App = () => {
         await axios.delete(
           `https://dummyjson.com/users/${id}`
         );
-
-        console.log("Deleted from API:", id);
 
       } catch (error) {
 
@@ -197,7 +186,6 @@ const App = () => {
     }
 
 
-    // React state se user remove
     setUsers((prevUsers) =>
       prevUsers.filter(
         (user) => user.id !== id
@@ -207,100 +195,32 @@ const App = () => {
   };
 
 
+  // =========================
+  // UI
+  // =========================
+
   return (
     <div>
 
       <h1>CRUD User Management</h1>
 
 
-      {/* =========================
-          FORM
-      ========================= */}
-
-      <form onSubmit={handleSubmit}>
-
-        <input
-          type="text"
-          name="firstName"
-          placeholder="First Name"
-          value={formData.firstName}
-          onChange={handleChange}
-        />
-
-        <br />
-        <br />
-
-        <input
-          type="text"
-          name="lastName"
-          placeholder="Last Name"
-          value={formData.lastName}
-          onChange={handleChange}
-        />
-
-        <br />
-        <br />
-
-        <input
-          type="number"
-          name="age"
-          placeholder="Age"
-          value={formData.age}
-          onChange={handleChange}
-        />
-
-        <br />
-        <br />
-
-        <button type="submit">
-          {editId === null
-            ? "Add User"
-            : "Update User"}
-        </button>
-
-      </form>
+      <UserForm
+        formData={formData}
+        editId={editId}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
 
 
       <hr />
 
 
-      {/* =========================
-          USER LIST
-      ========================= */}
-
-      <h2>Users List</h2>
-
-      <ul>
-
-        {users.map((user) => (
-
-          <li key={user.id}>
-
-            {user.firstName}{" "}
-            {user.lastName} -{" "}
-            {user.age}
-
-            {" "}
-
-            <button
-              onClick={() => handleEdit(user)}
-            >
-              Edit
-            </button>
-
-            {" "}
-
-            <button
-              onClick={() => handleDelete(user.id)}
-            >
-              Delete
-            </button>
-
-          </li>
-
-        ))}
-
-      </ul>
+      <UserList
+        users={users}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+      />
 
     </div>
   );
