@@ -33,7 +33,7 @@ const PrevNextReducer = () => {
 
     return (
         <>
-            <div className="flex flex-col gap-4 p-5 bg-gray-100 justify-center items-center">
+            <div className="flex flex-col gap-4 p-5 bg-pink-100 justify-center items-center">
 
                 <span>
                     Prev: {state.prevCount}
