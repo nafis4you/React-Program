@@ -17,7 +17,7 @@ const Reducer = () => {
     const [count, dispatch] = useReducer(reducer, 0);
 
     return (
-        <div className="flex gap-4 p-5">
+        <div className="flex gap-4 p-5 bg-gray-100 justify-center item-center">
 
             <button
                 onClick={() => dispatch("decreament")}

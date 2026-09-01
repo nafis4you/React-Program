@@ -3,6 +3,7 @@ import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import Reducer from './assets/component/Reducer'
+import PrevNextReducer from './assets/component/PrevNextReduser'
 import './App.css'
 
 function App() {
@@ -11,6 +12,8 @@ function App() {
   return (
     <>
       <Reducer />
+      <hr/>
+      <PrevNextReducer />
     </>
   )
 }
