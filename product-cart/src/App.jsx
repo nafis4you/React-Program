@@ -1,5 +1,5 @@
 import React from "react";
-import ProductCard from "./components/ProductCard";
+import Products from "./components/Products";
 import Cart from "./components/Cart";
 
 const products = [
@@ -8,21 +8,24 @@ const products = [
     title: "Laptop",
     price: 50000,
     description: "Powerful laptop for work and study.",
-    image: "https://picsum.photos/400/300?random=1",
+    image:
+      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500",
   },
   {
     id: 2,
     title: "Smartphone",
     price: 25000,
     description: "Latest smartphone with great features.",
-    image: "https://picsum.photos/400/300?random=2",
+    image:
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500",
   },
   {
     id: 3,
     title: "Headphones",
     price: 3000,
     description: "Wireless headphones with clear sound.",
-    image: "https://picsum.photos/400/300?random=3",
+    image:
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500",
   },
 ];
 
@@ -35,14 +38,7 @@ const App = () => {
       </h1>
 
       {/* Products */}
-      <div className="flex flex-wrap justify-center gap-6">
-        {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-          />
-        ))}
-      </div>
+      <Products products={products} />
 
       {/* Cart */}
       <Cart />
