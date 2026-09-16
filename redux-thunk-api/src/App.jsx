@@ -1,17 +1,11 @@
-import { useState } from 'react'
-import './App.css'
-import Product from './component/Product'
-import MyCart from './component/MyCart'
+import Product from "./component/Product";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+    return (
+        <>
+            <Product />
+        </>
+    );
+};
 
-  return (
-    <>
-      <Product />
-      <MyCart />
-    </>
-  )
-}
-
-export default App
+export default App;

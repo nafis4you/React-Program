@@ -1,38 +1,41 @@
-import { useDispatch, useSelector } from "react-redux";
-import { getProduct } from "../redux/slice,js";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProduct } from "../redux/slice.js";
 
-const Products = () => {
+const Product = () => {
+    const dispatch = useDispatch();
 
-  const dispatch = useDispatch();
+    const { product, loading, error } = useSelector(
+        (state) => state.product
+    );
 
-  const { products, loading, error } = useSelector(
-    (state) => state.Product
-  );
+    useEffect(() => {
+        dispatch(getProduct());
+    }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(getProduct());
-  }, [dispatch]);
+    if (loading) {
+        return <h2>Loading...</h2>;
+    }
 
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
+    if (error) {
+        return <h2>{error}</h2>;
+    }
 
-  if (error) {
-    return <h2>{error}</h2>;
-  }
+    return (
+        <div>
+            <h1>Products</h1>
 
-  return (
-    <>
-      <h1>Products</h1>
+            {product.map((item) => (
+                <div key={item.id}>
+                    <h3>{item.title}</h3>
 
-      {products.map((product) => (
-        <p key={product.id}>
-          {product.firstName} {product.lastName}
-        </p>
-      ))}
-    </>
-  );
+                    <p>Price: ₹{item.price}</p>
+
+                    <button>Add</button>
+                </div>
+            ))}
+        </div>
+    );
 };
 
-export default Products;
+export default Product;
