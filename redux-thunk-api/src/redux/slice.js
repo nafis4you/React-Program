@@ -10,13 +10,13 @@ export const getProduct = createAsyncThunk(
         }
 
         const data = await response.json();
-
         return data.products;
     }
 );
 
 const initialState = {
     product: [],
+    cart: [], // Cart state add kiya hai
     loading: false,
     error: null,
 };
@@ -26,8 +26,27 @@ const slice = createSlice({
     initialState,
 
     reducers: {
+        // Add to cart reducer
+        addToCart: (state, action) => {
+            const existingItem = state.cart.find(
+                (item) => item.id === action.payload.id
+            );
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                state.cart.push({ ...action.payload, quantity: 1 });
+            }
+        },
+
+        removeFromCart: (state, action) => {
+            state.cart = state.cart.filter(
+                (item) => item.id !== action.payload
+            );
+        },
+
         increaseItem: (state, action) => {
-            const item = state.product.find(
+            const item = state.cart.find(
                 (item) => item.id === action.payload
             );
 
@@ -37,7 +56,7 @@ const slice = createSlice({
         },
 
         decreaseItem: (state, action) => {
-            const item = state.product.find(
+            const item = state.cart.find(
                 (item) => item.id === action.payload
             );
 
@@ -53,16 +72,10 @@ const slice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
-
             .addCase(getProduct.fulfilled, (state, action) => {
                 state.loading = false;
-
-                state.product = action.payload.map((item) => ({
-                    ...item,
-                    quantity: 1,
-                }));
+                state.product = action.payload;
             })
-
             .addCase(getProduct.rejected, (state) => {
                 state.loading = false;
                 state.error = "Something went wrong";
@@ -70,6 +83,6 @@ const slice = createSlice({
     },
 });
 
-export const { increaseItem, decreaseItem } = slice.actions;
+export const { addToCart, removeFromCart, increaseItem, decreaseItem } = slice.actions;
 
 export default slice.reducer;
